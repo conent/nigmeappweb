@@ -1,0 +1,45 @@
+<div class="panel panel-default col-sm-4 col-sm-offset-4" style="padding-left: 0px; padding-right: 0px;">
+  <div class="panel-heading center">
+    <h1>Log in</h1>
+  </div>
+
+  <div class="panel-body" style="margin-left: 15px; margin-right: 15px;">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      
+
+      <div class= "row">
+        <div class="form-group">
+          <%= f.label :email, class: "sr-only" %>
+          <%= f.email_field :email, autofocus: true, class: "form-control center", placeholder:"Email address" %>
+        </div>
+      </div>
+
+      <div class= "row">
+        <div class="form-group">
+          <%= f.label :password, class: "sr-only" %>
+          <%= f.password_field :password, autocomplete: "off", class: "form-control center", placeholder:"Password" %>
+        </div>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div class= "row">
+          <div class="form-group">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        </div>
+      <% end -%>
+
+      <div class="row">
+        <div class="actions">
+          <%= f.submit "Log in", class: "btn btn-lg btn-primary btn-block" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="panel-footer">
+   or <%= render "devise/shared/links" %>
+  </div>
+
+</div>
