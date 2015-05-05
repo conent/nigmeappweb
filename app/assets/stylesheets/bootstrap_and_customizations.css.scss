@@ -1,3 +1,21 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+
+$font-family-sans-serif:                'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$body-bg: #ecf0f1;
+$navbar-inverse-bg: #3498db;
+$navbar-inverse-link-color: white;
+$brand-primary: #2980b9;
+$jumbotron-bg: #bdc3c7;
+
+
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.center {
+     text-align: center;
+}
+
+.navbar-brand {
+     font-weight: bold;
+}
