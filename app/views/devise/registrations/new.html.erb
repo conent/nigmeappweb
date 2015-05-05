@@ -8,6 +8,13 @@
       <%= devise_error_messages! %>
 
       <div class= "row">
+        <div class="form-group">
+          <%= f.label :name, class: "sr-only" %>
+          <%= f.text_field :name, autofocus: true, class: "form-control center", placeholder:"User name" %>
+        </div>
+      </div>
+
+      <div class= "row">
         <div class="form-group" >
           <%= f.label :email, class: "sr-only" %>
           <%= f.email_field :email, class: "form-control center", placeholder:"Email address", autofocus: true %>
