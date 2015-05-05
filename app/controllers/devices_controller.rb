@@ -1,5 +1,7 @@
 class DevicesController < ApplicationController
   before_action :set_device, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   respond_to :html
 
@@ -13,7 +15,7 @@ class DevicesController < ApplicationController
   end
 
   def new
-    @device = Device.new
+    @device = current_user.devices.build
     respond_with(@device)
   end
 
@@ -21,7 +23,7 @@ class DevicesController < ApplicationController
   end
 
   def create
-    @device = Device.new(device_params)
+    @device = current_user.devices.build(device_params)
     @device.save
     respond_with(@device)
   end
@@ -39,6 +41,11 @@ class DevicesController < ApplicationController
   private
     def set_device
       @device = Device.find(params[:id])
+    end
+
+    def correct_user
+      @device = current_user.devices.find_by(id: params[:id])
+      redirect_to devices_path, notice: "Not authorized" if @device.nil?
     end
 
     def device_params
