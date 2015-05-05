@@ -5,12 +5,18 @@
 
   <div class="panel-body" style="margin-left: 15px; margin-right: 15px;">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      
 
       <div class= "row">
         <div class="form-group">
+          <%= f.label :name, class: "sr-only" %>
+          <%= f.text_field :name, autofocus: true, class: "form-control center", placeholder:"User name" %>
+        </div>
+      </div>
+            
+      <div class= "row">
+        <div class="form-group">
           <%= f.label :email, class: "sr-only" %>
-          <%= f.email_field :email, autofocus: true, class: "form-control center", placeholder:"Email address" %>
+          <%= f.email_field :email, class: "form-control center", placeholder:"Email address" %>
         </div>
       </div>
 
