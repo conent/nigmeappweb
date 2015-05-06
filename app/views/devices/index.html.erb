@@ -1,6 +1,6 @@
 <h1>Listing devices</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Name</th>
@@ -15,9 +15,21 @@
       <tr>        
         <td><%= device.name %></td>
         <td><%= device.owner %></td>
-        <td><%= link_to 'Show', device %></td>
-        <td><%= link_to 'Edit', edit_device_path(device) %></td>
-        <td><%= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to "#" do %>
+          Nig It! <span class="glyphicon glyphicon-picture"></span>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to edit_device_path(device) do %>
+            Edit <span class="glyphicon glyphicon-edit"></span>  
+          <% end %>
+        </td>
+        <td>  
+          <%= link_to device, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            Delete <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
+        </td>
       </tr>
       <% end %>
     <% end %>

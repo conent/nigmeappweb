@@ -22,6 +22,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 # Devise for useres models
 gem 'devise', '~> 3.4.1'
+# Google Cloud Messaging
+gem 'gcm'
 group :development, :test do
      # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

@@ -8,17 +8,20 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "NigMeApp", root_path, class: "navbar-brand" %>
+      <% if user_signed_in? %>
+        <%= link_to "NigMeApp", devices_path, class: "navbar-brand" %>
+      <% else %>
+        <%= link_to "NigMeApp", root_path, class: "navbar-brand" %>
+      <% end %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Welcome", root_path %></li>
         <li><%= link_to "About", "#" %></li>
         <% if user_signed_in? %>
-          <li><%= link_to "Account Settings", edit_user_registration_path %></li>
-          <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to raw('Account Settings <span class="glyphicon glyphicon-cog"></span>'), edit_user_registration_path %></li>
+          <li><%= link_to raw('Log out <span class="glyphicon glyphicon-log-out"></span>'), destroy_user_session_path, method: :delete %></li>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
