@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   get "welcome" => "pages#welcome"
+  post "test" => "pages#test"
   get "test" => "pages#test"
 
   # The priority is based upon order of creation: first created -> highest priority.
