@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-
+	protect_from_forgery with: :null_session
 	respond_to :html
   
   def welcome
@@ -9,7 +9,7 @@ class PagesController < ApplicationController
   end
   
   def test
-  	protect_from_forgery with: :null_session
+  	
   	@string = "not set"
   	if params != nil
 	      require 'gcm'
