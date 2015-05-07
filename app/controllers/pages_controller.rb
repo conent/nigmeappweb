@@ -9,9 +9,9 @@ class PagesController < ApplicationController
   end
   
   def test
+  	protect_from_forgery with: :null_session
   	@string = "not set"
   	if params != nil
-	  	if params[:ids] == ["1"]
 	      require 'gcm'
 
 				gcm = GCM.new("AIzaSyD2DDS4y3TVNGHIvUwNDf65BpW5lEXFjpg")
@@ -25,13 +25,8 @@ class PagesController < ApplicationController
 				response = gcm.send(registration_ids, options)
 
 
-	      #@string = "Recived"
-	      #render :json =>{:data => @string}
-	    else
-	      @string = "fail"
-	      @values = params
+	      @string = "Recived"
 	      render :json =>{:data => @string}
-	    end 
     end
    end
 
