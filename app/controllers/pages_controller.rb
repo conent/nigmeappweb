@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
 	protect_from_forgery with: :null_session
+	skip_before_filter :verify_authenticity_token, :only => [:test]
 	respond_to :html
   
   def welcome
@@ -21,12 +22,13 @@ class PagesController < ApplicationController
 				#  gcm = GCM.new("my_api_key", timeout: 3)
 
 				registration_ids= ["12", "13"] # an array of one or more client registration IDs
-				options = {data: {score: "123"}, collapse_key: "updated_score"}
+				options = {data: "123"}
 				response = gcm.send(registration_ids, options)
 
 
 	      @string = "Recived"
-	      render :json =>{:data => @string}
+	      #provare a commentare la linea sotto
+	      #render :json =>{:data => @string}
     end
    end
 
