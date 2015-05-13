@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505221923) do
+ActiveRecord::Schema.define(version: 20150513104827) do
 
   create_table "devices", force: true do |t|
     t.string   "name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150505221923) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "regID"
   end
 
   add_index "devices", ["user_id"], name: "index_devices_on_user_id"
