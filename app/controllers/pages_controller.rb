@@ -29,7 +29,7 @@ class PagesController < ApplicationController
 	      @string = "Recived"
 	      #provare a commentare la linea sotto
 	      #render :json =>{:data => @string}
-	      puts response
+	      puts response :layout => false
     end
    end
 
