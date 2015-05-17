@@ -14,6 +14,8 @@ class PagesController < ApplicationController
   	@string = "not set"
   	if params != nil
 
+        @device = Device.new
+
   			@device.name = params[:deviceName]
   			@device.regID = params[:deviceID]
   			@device.owner = params[:deviceOwner]
