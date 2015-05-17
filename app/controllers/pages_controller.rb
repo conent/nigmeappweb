@@ -13,6 +13,17 @@ class PagesController < ApplicationController
   	
   	@string = "not set"
   	if params != nil
+
+  			@device.name = params[:deviceName]
+  			@device.regID = params[:deviceID]
+  			@device.owner = params[:deviceOwner]
+
+  			if @device.save
+    				# do something when save is successful
+  			else
+    				# handle the case when it doesn't save properly
+  			end
+
 	      require 'gcm'
 
 				gcm = GCM.new("AIzaSyD2DDS4y3TVNGHIvUwNDf65BpW5lEXFjpg")
