@@ -17,7 +17,6 @@ class PagesController < ApplicationController
         @device = Device.new
 
   			@device.name = params[:deviceName]
-        @device.owner = params[:deviceOwner]
   			@device.regID = params[:deviceID]
 
   			if @device.save
