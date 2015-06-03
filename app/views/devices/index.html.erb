@@ -4,7 +4,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Owner</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,7 +13,6 @@
       <% if device.user == current_user %>
       <tr>        
         <td><%= device.name %></td>
-        <td><%= device.owner %></td>
         <td>
           <%= link_to "#" do %>
           Nig It! <span class="glyphicon glyphicon-picture"></span>

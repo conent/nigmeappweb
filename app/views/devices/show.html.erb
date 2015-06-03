@@ -5,10 +5,6 @@
   <%= @device.name %>
 </p>
 
-<p>
-  <strong>Owner:</strong>
-  <%= @device.owner %>
-</p>
 
 <% if @device.user == current_user %>
 <%= link_to 'Edit', edit_device_path(@device) %> |
