@@ -17,31 +17,59 @@ class PagesController < ApplicationController
         @device = Device.new
 
   			@device.name = params[:deviceName]
+        @device.owner = params[:deviceOwner]
   			@device.regID = params[:deviceID]
 
   			if @device.save
+          @string = "device saved"
     				# do something when save is successful
   			else
+          @string= "error"
     				# handle the case when it doesn't save properly
   			end
 
-	      require 'gcm'
 
-				gcm = GCM.new("AIzaSyD2DDS4y3TVNGHIvUwNDf65BpW5lEXFjpg")
-				# you can set option parameters in here
-				#  - all options are pass to HTTParty method arguments
-				#  - ref: https://github.com/jnunemaker/httparty/blob/master/lib/httparty.rb#L40-L68
-				#  gcm = GCM.new("my_api_key", timeout: 3)
+	      @string = params[:deviceID] 
+        #provare a commentare la linea sotto
+	      render :json =>{:data => @string, :data2 => @device.regID, :message => params[:deviceID]}
+	      #puts response {render :layout => false}
+    end
+   end
 
-				registration_ids= ["12", "13"] # an array of one or more client registration IDs
-				options = {data: "123"}
-				response = gcm.send(registration_ids, options)
+   def testsend
+    
+    @string = "not set"
+    if params != nil
+
+        @device = Device.new
+
+        @device.name = params[:deviceName]
+        @device.owner = params[:deviceOwner]
+        @device.regID = params[:deviceID]
+
+        if @device.save
+            # do something when save is successful
+        else
+            # handle the case when it doesn't save properly
+        end
+
+        require 'gcm'
+
+        gcm = GCM.new("AIzaSyD2DDS4y3TVNGHIvUwNDf65BpW5lEXFjpg")
+        # you can set option parameters in here
+        #  - all options are pass to HTTParty method arguments
+        #  - ref: https://github.com/jnunemaker/httparty/blob/master/lib/httparty.rb#L40-L68
+        #  gcm = GCM.new("my_api_key", timeout: 3)
+
+        registration_ids= ["12", "13"] # an array of one or more client registration IDs
+        options = {data: "123"}
+        response = gcm.send(registration_ids, options)
 
 
-	      @string = "Recived"
-	      #provare a commentare la linea sotto
-	      #render :json =>{:data => @string}
-	      puts response {render :layout => false}
+        @string = params[:deviceID] 
+        #provare a commentare la linea sotto
+        #render :json =>{:data => @string}
+        puts response {render :layout => false}
     end
    end
 
