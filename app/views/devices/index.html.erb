@@ -14,9 +14,14 @@
       <tr>        
         <td><%= device.name %></td>
         <td>
-          <%= link_to "#" do %>
-          Nig It! <span class="glyphicon glyphicon-picture"></span>
-          <% end %>
+          <form id="nigForm" class="form-inline" action="/testsend" method="post">
+            <div class="form-group">
+              <%# TODO:fix this "hidden" %>
+              <input type="hidden" name="deviceID" id= "deviceID" value= "<%= device.regID%>">
+              <input type="text" class="form-control" id="urlImage" placeholder="Url image">
+            </div>
+            <button type="submit" class="btn btn-default">Nig It!</button>
+          </form>          
         </td>
         <td>
           <%= link_to edit_device_path(device) do %>

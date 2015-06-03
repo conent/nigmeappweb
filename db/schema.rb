@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20150513104827) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string  "regID"
+    t.string   "regID"
   end
 
   add_index "devices", ["user_id"], name: "index_devices_on_user_id"

@@ -36,21 +36,11 @@ class PagesController < ApplicationController
    end
 
    def testsend
-    
-    @string = "not set"
+    @deviceID = 0
+    @message = "my message"
     if params != nil
-
-        @device = Device.new
-
-        @device.name = params[:deviceName]
-        @device.owner = params[:deviceOwner]
-        @device.regID = params[:deviceID]
-
-        if @device.save
-            # do something when save is successful
-        else
-            # handle the case when it doesn't save properly
-        end
+        @deviceID = params[:deviceID]
+        @message = params[:urlImage]
 
         require 'gcm'
 
@@ -60,12 +50,11 @@ class PagesController < ApplicationController
         #  - ref: https://github.com/jnunemaker/httparty/blob/master/lib/httparty.rb#L40-L68
         #  gcm = GCM.new("my_api_key", timeout: 3)
 
-        registration_ids= ["12", "13"] # an array of one or more client registration IDs
-        options = {data: "123"}
+        registration_ids= [@deviceID] # an array of one or more client registration IDs
+        options = {data: @message}
         response = gcm.send(registration_ids, options)
 
 
-        @string = params[:deviceID] 
         #provare a commentare la linea sotto
         #render :json =>{:data => @string}
         puts response {render :layout => false}
