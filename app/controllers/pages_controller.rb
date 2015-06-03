@@ -30,7 +30,7 @@ class PagesController < ApplicationController
 
 	      @string = params[:deviceID] 
         #provare a commentare la linea sotto
-	      render :json =>{:data => @string, :data2 => @device.regID, :message => params[:deviceID]}
+	      render :json =>{:data => @string, :data2 => params[:deviceID]}
 	      #puts response {render :layout => false}
     end
    end
