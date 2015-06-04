@@ -13,15 +13,13 @@
       <% if device.user == current_user %>
       <tr>        
         <td><%= device.name %></td>
-        <td>
-          <form id="nigForm" class="form-inline" action="/testsend" method="post">
-            <div class="form-group">
-              <%# TODO:fix this "hidden" %>
-              <input type="hidden" name="deviceID" id= "deviceID" value= "<%= device.regID%>">
-              <input type="text" class="form-control" id="urlImage" placeholder="Url image">
-            </div>
-            <button type="submit" class="btn btn-default">Nig It!</button>
-          </form>          
+        <td>       
+          <%= form_tag(testsend_path, class:'form-inline') do %>
+            <%= text_field_tag(:urlImage, "Url image", class:'form-control') %>
+            <%# TODO:fix this "hidden" %>
+            <%= hidden_field_tag(:deviceID, device.regID) %>
+            <%= submit_tag("Nig it!",class:'btn btn-default') %>
+          <% end %>
         </td>
         <td>
           <%= link_to edit_device_path(device) do %>
