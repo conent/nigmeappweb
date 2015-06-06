@@ -49,11 +49,11 @@ class PagesController < ApplicationController
         #  - all options are pass to HTTParty method arguments
         #  - ref: https://github.com/jnunemaker/httparty/blob/master/lib/httparty.rb#L40-L68
         #  gcm = GCM.new("my_api_key", timeout: 3)
-
+        puts "TRYING TO RESPOND, logs!"
         registration_ids= [@deviceID] # an array of one or more client registration IDs
         options = {data: @message}
         response = gcm.send(registration_ids, options)
-
+        puts "GCM SEND RESPONSE, logs!"
 
         #provare a commentare la linea sotto
         #render :json =>{:data => @string}
