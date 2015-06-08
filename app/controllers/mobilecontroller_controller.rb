@@ -8,7 +8,7 @@ class MobilecontrollerController < Devise::SessionsController
     render :status => 200,
            :json => { :success => true,
                       :info => "Logged in",
-                      :data => { :auth_token => generate_authentication_token } }
+                      :data => { :auth_token => "exampleToken" } }
   end
 
   def destroy
