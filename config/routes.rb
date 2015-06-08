@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   
   post "testsend" => "pages#testsend"
 
-  post "mobilelogin" => "mobilecontroller#create"
-  delete "mobilelogout" => "mobilecontroller#destroy"
+  devise_scope :user do
+    post "mobilelogin" => "mobilecontroller#create"
+    delete "mobilelogout" => "mobilecontroller#destroy"
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
