@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   post "testsend" => "pages#testsend"
 
   post "mobilelogin" => "mobilecontroller#create"
-  delete "mobilelogout" => "mobilecontroller#destroy"
+  #try delete instead of post in destroy
+  post "mobilelogout" => "mobilecontroller#destroy"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
