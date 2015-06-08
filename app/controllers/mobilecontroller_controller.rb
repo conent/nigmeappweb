@@ -28,5 +28,3 @@ class MobilecontrollerController < Devise::SessionsController
                       :data => {} }
   end
 end
-
-end
