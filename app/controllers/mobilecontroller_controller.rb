@@ -1,14 +1,32 @@
-class MobilecontrollerController < ApplicationController
-	require 'net/http'
-	skip_before_filter :verify_authenticity_token, :only => [:login]
-	skip_after_filter :verify_authenticity_token, :only => [:login]
+class MobilecontrollerController < Devise::SessionsController
+  skip_before_filter :verify_authenticity_token,
+                     :if => Proc.new { |c| c.request.format == 'application/json' }
 
-	def login  	
-		@email = params[:email]
-		@password = params[:pwd]
-		uri = URI('http://www.example.com/search.cgi')
-		res = Net::HTTP.post_form(uri, 'email' => @email, 'password' => @password)
-		puts res.body
+  respond_to :json
+
+  def create
+    warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
+    render :status => 200,
+           :json => { :success => true,
+                      :info => "Logged in",
+                      :data => { :auth_token => current_user.authentication_token } }
   end
+
+  def destroy
+    warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
+    current_user.update_column(:authentication_token, nil)
+    render :status => 200,
+           :json => { :success => true,
+                      :info => "Logged out",
+                      :data => {} }
+  end
+
+  def failure
+    render :status => 401,
+           :json => { :success => false,
+                      :info => "Login Failed",
+                      :data => {} }
+  end
+end
 
 end
