@@ -8,7 +8,7 @@ class MobilecontrollerController < Devise::SessionsController
     render :status => 200,
            :json => { :success => true,
                       :info => "Logged in",
-                      :data => { :auth_token => "exampleToken" } }
+                      :data => { :userID => User.where(email: params[:user][:email]).take.id } }
   end
 
   def destroy
