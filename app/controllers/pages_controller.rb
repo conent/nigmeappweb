@@ -61,4 +61,36 @@ class PagesController < ApplicationController
     end
    end
 
+  def registermobile
+    @deviceID = 0
+    @message = "my message"
+    if params != nil
+
+        @device = Device.new
+        @device.name = params[:deviceName]
+        @device.regID = params[:deviceID]
+        @device.user_id = params[:ownerID]
+
+        if @device.save
+          @string = "device saved"
+            # do something when save is successful
+            render :status => 200,
+            :json => { :success => true,
+                      :info => "Device regitration compleated",
+                      :data => {:data => @string} }
+        else
+          @string= "error"
+          render :status => 401,
+          :json => { :success => false,
+                      :info => "Device registration failed",
+                      :data => {:data => @string} }
+        end
+        
+        
+    end
+  end
+
+
+
+
 end
