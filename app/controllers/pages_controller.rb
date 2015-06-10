@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 	protect_from_forgery with: :null_session
-	skip_before_filter :verify_authenticity_token, :only => [:test]
+	skip_before_filter :verify_authenticity_token, :only => [:test,:registermobile]
 	respond_to :html
   
   def welcome
@@ -67,9 +67,9 @@ class PagesController < ApplicationController
     if params != nil
 
         @device = Device.new
-        @device.name = params[:deviceName]
-        @device.regID = params[:deviceID]
-        @device.user_id = params[:ownerID]
+        @device.name = params[:device][:deviceName]
+        @device.regID = params[:device][:deviceID]
+        @device.user_id = params[:device][:ownerID]
 
         if @device.save
           @string = "device saved"
