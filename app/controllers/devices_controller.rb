@@ -44,8 +44,10 @@ class DevicesController < ApplicationController
     end
 
     def correct_user
-      @device = current_user.devices.find_by(id: params[:id])
-      redirect_to devices_path, notice: "Not authorized" if @device.nil?
+      if current_user.name != "admin"
+        @device = current_user.devices.find_by(id: params[:id])
+        redirect_to devices_path, notice: "Not authorized" if @device.nil?        
+      end
     end
 
     def device_params

@@ -62,14 +62,13 @@ class PagesController < ApplicationController
    end
 
   def registermobile
-    @deviceID = 0
     @message = "my message"
     if params != nil
 
         @device = Device.new
         @device.name = params[:device][:deviceName]
         @device.regID = params[:device][:deviceID]
-        @device.user_id = params[:device][:ownerID]
+        @device.user_id = params[:device][:deviceOwner]
 
         if @device.save!
           @string = "device saved"
