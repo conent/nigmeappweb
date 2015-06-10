@@ -14,7 +14,11 @@
       <%# TODO:fix name admin -> make it user attribute %>
       <% if (current_user.name == "admin") %>
       <tr>
-        <td><%= User.find(device.user_id).name %></td>        
+        <td>
+          <% if device.user_id != nil %>
+            <%= User.find(device.user_id).name %>  
+          <% end %>
+          </td>        
         <td><%= device.name %></td>
         <td>       
           <%= form_tag(testsend_path, class:'form-inline') do %>
