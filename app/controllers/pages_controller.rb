@@ -71,12 +71,12 @@ class PagesController < ApplicationController
         @device.regID = params[:device][:deviceID]
         @device.user_id = params[:device][:ownerID]
 
-        if @device.save
+        if @device.save!
           @string = "device saved"
             # do something when save is successful
             render :status => 200,
             :json => { :success => true,
-                      :info => "Device regitration compleated",
+                      :info => "Device registration compleated",
                       :data => {:data => @string} }
         else
           @string= "error"

@@ -3,6 +3,7 @@
 <table class="table table-hover">
   <thead>
     <tr>
+      <th>User</th>
       <th>Name</th>
       <th colspan="3"></th>
     </tr>
@@ -10,7 +11,32 @@
 
   <tbody>
     <% @devices.each do |device| %>
-      <% if device.user == current_user %>
+      <%# TODO:fix name admin -> make it user attribute %>
+      <% if (current_user.name == "admin") %>
+      <tr>
+        <td><%= User.find(device.user_id).name %></td>        
+        <td><%= device.name %></td>
+        <td>       
+          <%= form_tag(testsend_path, class:'form-inline') do %>
+            <%= text_field_tag(:urlImage, "Url image", class:'form-control') %>
+            <%# TODO:fix this "hidden" %>
+            <%= hidden_field_tag(:deviceID, device.regID) %>
+            <%= submit_tag("Nig it!",class:'btn btn-default') %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to edit_device_path(device) do %>
+            Edit <span class="glyphicon glyphicon-edit"></span>  
+          <% end %>
+        </td>
+        <td>  
+          <%= link_to device, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            Delete <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+      <% if (current_user.name != "admin" && device.user == current_user) %>
       <tr>        
         <td><%= device.name %></td>
         <td>       
