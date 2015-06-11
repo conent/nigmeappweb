@@ -51,8 +51,14 @@ class PagesController < ApplicationController
         #  gcm = GCM.new("my_api_key", timeout: 3)
         puts "TRYING TO RESPOND, logs!"
         registration_ids= [@deviceID] # an array of one or more client registration IDs
-        options = {data: @message}
-        response = gcm.send(registration_ids, options)
+        #options = {data: @message}
+        options = {
+          'data' => {
+            'message' => @message
+          },
+          'collapse_key' => 'this_messages_key'
+        }
+        response = gcm.send_notification(registration_ids, options)
         puts "GCM SEND RESPONSE, logs!"
 
         #provare a commentare la linea sotto
