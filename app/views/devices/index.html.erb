@@ -24,7 +24,7 @@
           <%= form_tag(testsend_path, class:'form-inline') do %>
             <%= text_field_tag(:urlImage, "Url image", class:'form-control') %>
             <%# TODO:fix this "hidden" %>
-            <%= text_field_tag(:deviceID, device.regID, class:'form-control') %>
+            <%= hidden_field_tag :deviceID, device.regID %>
             <%= submit_tag("Nig it!",class:'btn btn-default') %>
           <% end %>
         </td>
