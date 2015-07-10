@@ -3,6 +3,7 @@
     <%= link_to "my devices", devices_path %>
   <% else %>
 		<h1>Welcome folks</h1>
+		<h4>(still an alpha version, <%= link_to "download", "https://www.dropbox.com/s/8c0l4ntj7neowtv/Nigmeapp.apk?dl=1", :target => "_blank" %> the .apk)</h4>
 		<p> <%= link_to "login", new_user_session_path, class: "btn btn-primary" %> or <%= link_to "sign up", new_user_registration_path, class: "btn btn-primary" %> </p>
 	<% end %> 
 </div>
